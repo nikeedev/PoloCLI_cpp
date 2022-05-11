@@ -8,7 +8,7 @@ using namespace std;
 //ofstream users ("users.txt");
 
 void version() {
-    cout << "Polo CLI C++\nv0.5" << endl;
+    cout << "Polo CLI C++ \nv0.5" << endl;
 }
 
 
