@@ -1,14 +1,15 @@
 #include <iostream>
 #include <string>
+#include <hash_map>
+
+
 
 //#include <fstream>
-
-using namespace std;
 
 //ofstream users ("users.txt");
 
 void version() {
-    cout << "Polo CLI C++ \nv0.5" << endl;
+    std::cout << "Polo CLI C++ \nv0.5" << std::endl;
 }
 
 
@@ -17,37 +18,41 @@ int main()
 
     version();
     
-    string user, pswrd, checkuser, checkpswrd;
+    std::string user, pswrd, checkuser, checkpswrd;
     
-    bool whileterminal = true;
-    bool while_login = true;
-    bool while_pswrd = true;
-    bool while_user = true;
+    bool whileTerminal = true,
+        
+        while_login = true,
+        
+        while_pswrd = true,
+        
+        while_user = true;
 
     while (while_user) {
-        cout << "Write new username: ";
-        cin >> user;
-        cout << "Save username? Write yes or no: ";
-        string yesno;
+        std::cout << "Write new username: ";
+        std::cin >> user;
+        std::cout << "Save username? Write y or n: ";
+        std::string yesno;
   
-        cin >> yesno;
+        std::cin >> yesno;
         if ("yes" == yesno || "y" == yesno) {
             while_user = false;
-            cout << "Saved!" << endl;
+            std::cout << "Saved!" << std::endl;
         }
         else {
             continue;
         }
     }
     while (while_pswrd) {
-        cout << "Write new password: ";
-        cin >> pswrd;
-        cout << "Save password? Write yes or no: ";
-        string yesno2;
-        cin >> yesno2;
+        std::cout << "Write new password: ";
+        std::cin >> pswrd;
+        std::cout << "Save password? Write y or n: ";
+        std::string yesno2;
+        std::cin >> yesno2;
+
         if ("yes" == yesno2 || "y" == yesno2) {
             while_pswrd = false;
-            cout << "Saved!" << endl;
+            std::cout << "Saved!" << std::endl;
         }
         else {
             continue;
@@ -58,70 +63,79 @@ int main()
 
 
     while (while_login) {
-        cout << "Login: " << endl;
-        cout << "Write username: ";
-        cin >> checkuser;
-        cout << endl;
-        cout << "Write password: ";
-        cin >> checkpswrd;
-        cout << endl;
+        std::cout << "Login: " << std::endl;
+        std::cout << "Write username: ";
+        std::cin >> checkuser;
+        std::cout << std::endl;
+        std::cout << "Write password: ";
+        std::cin >> checkpswrd;
+        std::cout << std::endl;
         if (checkuser == user) {  
             if (checkpswrd == pswrd) {
                 system("cls");
                 system("cls");
                 while_login = false;
-                cout << "Login Complete!" << endl;   
+                std::cout << "Login Complete!" << std::endl;   
             }
             else {
-                cout << "Incorrect password or username" << endl;
-                cout << endl;
+                std::cout << "Incorrect password or username" << std::endl;
+                std::cout << std::endl;
             }   
         }
         else {
-            cout << "Incorrect username or password" << endl;
-            cout << endl;                
+            std::cout << "Incorrect username or password" << std::endl;
+            std::cout << std::endl;                
         }
     }
 
 
-    while (whileterminal) {
-        cout << endl;
-        string commands;
-        cout << "polo - " << user << "/>";
-        getline(cin >> ws, commands);
-        if (commands == "exit") {
-            cout << endl;
-            cout << "Confirming exit..." << endl;
+    while (whileTerminal) {
+        std::cout << std::endl;
+       
+        std::cout << "polo - " << user << " />";
+        
+        std::string commands;
+        std::getline(std::cin, commands);
+        
+        
+        if (commands == "exit")
+        {
+            std::cout << std::endl;
+            std::cout << "Confirming exit..." << std::endl;
             system("pause");
-            whileterminal = false;
-        }
-        else if (commands == "start print") {
-            string printinput;
-            cout << "print | Input: ";
-            getline(cin, printinput);
-            cout << endl;
-            cout << "print | Output: " << printinput << endl;
+            whileTerminal = false;
         }
 
-        else if (commands == "user") {
-            cout << "Current user logged in is: " << user;
+        else if (commands == "print")
+        {
+            std::string printinput;
+            std::cout << "print | Input: ";
+
+            std::getline(std::cin, printinput);
+
+            std::cout << std::endl;
+            std::cout << "print | Output: " << printinput << std::endl;
         }
-        else if (commands == "version" || commands == "--version" || commands == "about" || commands == "-v" || commands == "--v" ||commands == "-ver") {
+
+        else if (commands == "user")
+        {
+            std::cout << "Current user logged in is: " << user;
+        }
+
+        else if (commands == "version" || commands == "about")
+        {
             version();
         }
+
         else if (commands == "help")
         {
-            cout << endl;
-            cout << "You can use Following commands: " << endl;
-            cout << "version, --version, --v, -ver, -v and about: All they show current version." << endl;
-            cout << "help: Shows this page. " << endl;
-            cout << "user: Shows current user logged in. " << endl;
-            cout << "exit: Exits current session. " << endl;
-            cout << "start print: You can write input so it replys it back. " << endl;
-        }
-
-        else if (commands == "") {
-            
+            std::cout << std::endl;
+            std::cout << "You can use these commands: " << std::endl;
+            std::cout << "version or about: All they show current version of the terminal." << std::endl;
+            std::cout << "help: Shows this page. " << std::endl;
+            std::cout << "user: Shows current user logged in. " << std::endl;
+            std::cout << "exit: Exits current session. " << std::endl;
+            std::cout << "echo: Prints out input. " << std::endl;
         }
     
         else {
